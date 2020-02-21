@@ -1,4 +1,6 @@
-﻿using Robotlegs.Bender.Extensions.EventCommand.API;
+﻿using DB.Extensions.AssetProcessing;
+using DB.Extensions.AssetProcessing.IMPL;
+using Robotlegs.Bender.Extensions.EventCommand.API;
 using Robotlegs.Bender.Extensions.Mediation.API;
 using Robotlegs.Bender.Framework.API;
 
@@ -10,6 +12,8 @@ namespace DB.Extensions.TemplateExtension
         {
             IMediatorMap mediatorMap = context.injector.GetInstance<IMediatorMap>();
             IEventCommandMap commandMap = context.injector.GetInstance<IEventCommandMap>();
+
+            context.injector.Map<IAssetDatabaseModel>().ToSingleton<AssetDatabaseModel>();
         }
     }
 }

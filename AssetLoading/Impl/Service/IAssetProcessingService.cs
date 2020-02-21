@@ -9,6 +9,7 @@ namespace DB.Extensions.AssetProcessing.IMPL
     {
         //process, in this location, with this complete and add to this database
         void SetRootLocation(string path);
+        void SetDatabase(IAssetDatabaseModel model);
         void AutoGenerateComplete(bool autoGenerate);
         void ProcessAssets(Action onComplete, string folder = "", Assets data = null, bool lazyLoadDatabase = false);
     }

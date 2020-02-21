@@ -9,13 +9,17 @@ namespace DB.Extensions.AssetProcessing.IMPL
 {
     public class AssetProcessingService : MonoBehaviour, IAssetProcessingService
     {
-        [Inject]
-        public IAssetDatabaseModel database;
+        IAssetDatabaseModel database;
 
         GenorateComplete genorator = new GenorateComplete();
 
         private bool autoGenorateCompete = false;
         private string rootLocation = "";
+
+        public void SetDatabase(IAssetDatabaseModel model) 
+        {
+            database = model;
+        }
 
         public void AutoGenerateComplete(bool autoGenerate)
         {

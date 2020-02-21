@@ -32,6 +32,9 @@ namespace DB.Extensions.AssetProcessing.IMPL
         void UpdateLoadedAssets() 
         {
             assetsLoaded++;
+
+            Debug.Log($"Proccessed:{assetsLoaded}/{assetsToLoad}");
+
             if (assetsToLoad == assetsLoaded) 
             {
                 compleatCallback?.Invoke();
@@ -41,7 +44,7 @@ namespace DB.Extensions.AssetProcessing.IMPL
         public IEnumerator Process(Assets assets)
         {
             assetsLoaded = 0;
-            assetsToLoad = assets.assets.Length;
+            assetsToLoad = GetTotalAssets(assets);
 
             for (int i = 0; i < assets.assets.Length; i++)
             {
@@ -177,6 +180,25 @@ namespace DB.Extensions.AssetProcessing.IMPL
 
             database.AssingVideo(id, key, readLocation + "/" + filePath, databaseName, payload);
             UpdateLoadedAssets();
+        }
+
+        private int GetTotalAssets(Assets assets)
+        {
+            int assetsCount = 0;
+
+            for (int i = 0; i < assets.assets.Length; i++)
+            {
+                if (assets.assets[i].assetType == AssetTypes.PDF)
+                {
+                    assetsCount += assets.assets[i].pages;
+                }
+                else
+                {
+                    assetsCount++;
+                }
+            }
+
+            return assetsCount;
         }
 
         public IEnumerator GetFileBytes(string _fileLocation, Action<bool, LoadedAsset> _asset)

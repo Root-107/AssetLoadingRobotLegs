@@ -8,7 +8,6 @@ namespace DB.Extensions.AssetProcessing.API
 {
     public class AssetProcessorConfig : IConfig
     {
-
         [Inject]
         public IContext context;
 

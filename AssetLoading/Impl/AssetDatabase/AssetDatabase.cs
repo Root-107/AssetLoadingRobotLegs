@@ -28,13 +28,13 @@ namespace DB.Extensions.AssetProcessing.IMPL
             }
             textureProvider.AddAsset(id, title, texture, payload);
         }
-        public void AddText()
+        public void AddText(int id, string title, string value, object payload = null)
         {
         }
-        public void AddSprite()
+        public void AddSprite(int id, string title, Sprite image, object payload = null)
         {
         }
-        public void AddPdf()
+        public void AddPdf(int id, string title, Sprite image, object payload = null)
         {
         }
     }

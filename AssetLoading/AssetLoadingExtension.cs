@@ -6,7 +6,7 @@ using Robotlegs.Bender.Framework.API;
 
 namespace DB.Extensions.TemplateExtension
 {
-    public class TemplateExtension : IExtension
+    public class AssetLoadingExtension : IExtension
     {
         public void Extend(IContext context)
         {

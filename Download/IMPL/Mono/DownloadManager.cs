@@ -23,6 +23,12 @@ namespace DB.Extensions.Downloading.IMP
             this.downloadComplete = downloadComplete;
             this.writeLocation = writeLocation;
 
+            if (urls.Length == 0) 
+            {
+                downloadComplete?.Invoke();
+                return;
+            }
+
             for (int i = 0; i < assetsToDownload; i++)
             {
                 string extention = Path.GetExtension(urls[i]);
@@ -73,10 +79,16 @@ namespace DB.Extensions.Downloading.IMP
             Debug.Log($"Downloaded :{assetsDownloaded}/{assetsToDownload}");
             if (assetsDownloaded == assetsToDownload)
             {
-                Debug.Log("All assets donwloaded");
+                Debug.Log("All assets downloaded");
                 //Remove the download manager for the scene
-                downloadComplete?.Invoke();
+                StartCoroutine(Delaycallback());
             }
+        }
+
+        IEnumerator Delaycallback() 
+        {
+            yield return new WaitForSeconds(1);
+            downloadComplete?.Invoke();
         }
 
         Action<LoadedAsset> GetMethoud(string extention) 

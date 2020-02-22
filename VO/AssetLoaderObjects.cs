@@ -74,7 +74,7 @@ public class LoadedAsset
 }
 
 [Serializable]
-public class UrlData
+public class AssetAPIData
 {
     public string dbName;
     public UpdatedAssets[] updates;

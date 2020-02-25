@@ -82,5 +82,36 @@ namespace DB.Extensions.AssetProcessing.IMPL
         {
             return MainDatabase.ContainsKey(name);
         }
+
+        public RequestedAsset GetAsset(int id, AssetTypes type, string database = null)
+        {
+            database = CheckDatabaseName(database);
+            if (DatabaseExists(database)) 
+            {
+                return MainDatabase[database].GetAsset(id, type);
+            }
+
+            Debug.LogWarning("You are trying to request from a database that has not been created.");
+
+            return null;
+        }
+
+        public RequestedAsset GetAsset(string title, AssetTypes type, string database = null)
+        {
+            database = CheckDatabaseName(database);
+            if (DatabaseExists(database))
+            {
+                return MainDatabase[database].GetAsset(title, type);
+            }
+
+            Debug.LogWarning("You are trying to request from a database that has not been created.");
+
+            return null;
+        }
+
+        private string CheckDatabaseName(string value) 
+        {
+            return value = string.IsNullOrEmpty(value) ? defaultDatabase : value;
+        }
     }
 }

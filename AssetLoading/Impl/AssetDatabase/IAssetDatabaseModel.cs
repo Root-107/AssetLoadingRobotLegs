@@ -14,5 +14,8 @@ namespace DB.Extensions.AssetProcessing.IMPL
         void AssignImage(int id, string key, Sprite value, string database, object payload = null);
         void AssignTexture(int id, string key, Texture2D value, string database, object payload = null);
         void AssingVideo(int id, string key, string value, string database, object payload = null);
+
+        RequestedAsset GetAsset(int id, AssetTypes type, string database = null);
+        RequestedAsset GetAsset(string title, AssetTypes type, string database = null);
     }
 }

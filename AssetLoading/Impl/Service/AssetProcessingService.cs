@@ -87,7 +87,6 @@ namespace DB.Extensions.AssetProcessing.IMPL
 
         private string Createdatabase(string name) 
         {
-            //Create new Datyabase
             name = string.IsNullOrEmpty(name) ? "Assets" : name;
 
             if (!database.DatabaseExists(name))

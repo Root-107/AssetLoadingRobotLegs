@@ -29,7 +29,7 @@ namespace DB.Extensions.AssetProcessing.API
         public AssetRequestEvent(Type type, string title, string databaseName = "") : base(type)
         {
             DatabaseName = databaseName;
-            Id = 0;
+            Id = -1;
             Title = title;
         }
     }
